@@ -5,3 +5,9 @@
 ```
 $ go run main.go
 ```
+
+### migrate
+
+```
+$ go run db/migrate.go
+```
