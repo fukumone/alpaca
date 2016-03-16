@@ -15,7 +15,7 @@ type Message struct {
 	UpdatedAT time.Time
 }
 
-func MessageValidate(article Article) error {
+func MessageValidate(message Message) error {
 	Validator := valval.Object(valval.M{
 		"Name": valval.String(
 			valval.MaxLength(20),
@@ -23,7 +23,7 @@ func MessageValidate(article Article) error {
 		),
 	})
 
-	return Validator.Validate(article)
+	return Validator.Validate(message)
 }
 
 func NewMessage(name string, title string, body string) *Message {
