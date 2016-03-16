@@ -10,11 +10,11 @@ import (
 )
 
 func Env_load() {
-	if os.Getenv("GIN_ENV") == "" {
-		os.Setenv("GIN_ENV", "development")
+	if os.Getenv("ALPACA_ENV") == "" {
+		os.Setenv("ALPACA_ENV", "development")
 	}
 
-	err := godotenv.Load(fmt.Sprintf(".env.%s", os.Getenv("GIN_ENV")))
+	err := godotenv.Load(fmt.Sprintf(".env.%s", os.Getenv("ALPACA_ENV")))
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
