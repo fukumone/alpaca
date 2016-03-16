@@ -1,32 +1,25 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
-	"path/filepath"
-	"sync"
+
+	"github.com/jinzhu/gorm"
+	"github.com/t-fukui/alpaca/config"
 )
 
-type templateHandler struct {
-	once     sync.Once
-	filename string
-	templ    *template.Template
-}
-
-// ServeHTTP handles the HTTP request.
-func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	t.once.Do(func() {
-		t.templ = template.Must(template.ParseFiles(filepath.Join("templates", t.filename)))
-	})
-	t.templ.Execute(w, r)
-}
+var db gorm.DB
 
 func main() {
-	http.Handle("/", &templateHandler{filename: "index.html"})
+	http.HandleFunc("/", IndexHandler)
 
 	// Webサーバーを起動
 	if err := http.ListenAndServe(":3000", nil); err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
+}
+
+func init() {
+	db := config.Database()
+	log.Println(db)
 }

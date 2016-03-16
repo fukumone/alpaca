@@ -1,0 +1,6 @@
+.env.*
+
+# Mac
+.DS_Store
+
+alpaca

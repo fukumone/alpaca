@@ -1,1 +1,15 @@
-here
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>掲示板です</title>
+</head>
+<body>
+  <h1>掲示板です</h1>
+  <p>名は持っていないです</p>
+  {{range .}}
+  <a href="/message/edit/{{.Id}}">{{.Name}}</a><br/>
+  {{end}}
+  <a href="/message/new">new</a>
+</body>
+</html>

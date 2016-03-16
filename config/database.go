@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
+	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"os"
 )
@@ -22,7 +22,7 @@ func Env_load() {
 
 func Database() gorm.DB {
 	Env_load()
-	db, err := gorm.Open("postgres",
+	db, err := gorm.Open("mysql",
 		fmt.Sprintf("dbname=%s user=%s password=%s sslmode=disable",
 			os.Getenv("DATABASE_NAME"),
 			os.Getenv("USER_NAME"),
