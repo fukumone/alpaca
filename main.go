@@ -1,17 +1,17 @@
 package main
 
 import (
+	"html/template"
 	"log"
-	"sync"
 	"net/http"
 	"path/filepath"
-	"html/template"
+	"sync"
 )
 
 type templateHandler struct {
-	once	sync.Once
-	filename	string
-	templ	*template.Template
+	once     sync.Once
+	filename string
+	templ    *template.Template
 }
 
 // ServeHTTP handles the HTTP request.
