@@ -23,10 +23,9 @@ func Env_load() {
 func Database() gorm.DB {
 	Env_load()
 	db, err := gorm.Open("mysql",
-		fmt.Sprintf("dbname=%s user=%s password=%s sslmode=disable",
-			os.Getenv("DATABASE_NAME"),
+		fmt.Sprintf("%s:@/%s?charset=utf8&parseTime=True&loc=Local",
 			os.Getenv("USER_NAME"),
-			os.Getenv("PASSWORD"),
+			os.Getenv("DATABASE_NAME"),
 		))
 
 	if err != nil {

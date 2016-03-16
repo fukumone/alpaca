@@ -1,9 +1,8 @@
 package main
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/go-sql-driver/mysql"
-	"models"
+	"github.com/t-fukui/alpaca/config"
+	"github.com/t-fukui/alpaca/models"
 )
 
 func main(){
