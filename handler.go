@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"html/template" // "text/template"と比べるとセキュアなHTMLを生成する
+	"html/template"
 	"github.com/t-fukui/alpaca/models"
 )
 
