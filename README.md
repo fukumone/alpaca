@@ -3,7 +3,8 @@
 ### サーバー起動
 
 ```
-$ go run main.go
+$ go build -o ./alpaca
+$ ./alpaca
 ```
 
 ### migrate
