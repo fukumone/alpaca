@@ -20,6 +20,5 @@ func main() {
 }
 
 func init() {
-	db := config.Database()
-	log.Println(db)
+	db = config.Database()
 }

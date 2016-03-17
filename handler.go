@@ -2,16 +2,13 @@ package main
 
 import (
 	"net/http"
-	"html/template"
-
+	"html/template" // "text/template"と比べるとセキュアなHTMLを生成する
 	"github.com/t-fukui/alpaca/models"
 )
 
-var tpl *template.Template
-
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	Messages := [] models.Message{}
-	db.Find(&Messages)
-	tpl = template.Must(template.ParseFiles("templates/index.html"))
-	tpl.Execute(w, Messages)
+	Messages := []models.Message{}
+	db.Debug().Find(&Messages)
+	tpl := template.Must(template.ParseFiles("templates/index.html"))
+	tpl.Execute(w, &Messages)
 }
