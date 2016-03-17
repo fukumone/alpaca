@@ -27,8 +27,8 @@ func NewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf8")
 	Message := models.Message{Name: r.FormValue("Name"), Title: r.FormValue("Title"), Body: r.FormValue("Body")}
+
 	if err := models.MessageValidate(Message); err != nil {
 		var Mess string
 		errs := valval.Errors(err)

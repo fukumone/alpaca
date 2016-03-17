@@ -7,10 +7,14 @@
 <body>
   <h1>掲示板です</h1>
   <p>名は持っていないです</p>
+  <a href="/new">新規メッセージ</a>
 
   {{range .}}
-  <a href="/edit/{{.Id}}">{{.Name}}</a><br/>
+  <ul>
+    <li><a href="/edit/{{.Id}}">{{.Name}}</a><br/></li>
+    <li>{{.Title}}</li>
+    <li>{{.Body}}</li>
+  </ul>
   {{end}}
-  <a href="/new">new</a>
 </body>
 </html>
