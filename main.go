@@ -12,6 +12,7 @@ var db gorm.DB
 
 func main() {
 	http.HandleFunc("/", IndexHandler)
+	http.HandleFunc("/new", NewHandler)
 
 	// Webサーバーを起動
 	if err := http.ListenAndServe(":3000", nil); err != nil {
