@@ -1,0 +1,12 @@
+<html>
+  <form method="post" action="/update/{{.Message.Id}}" >
+    <label>
+      Name
+      <input type="text" name="Name" value="{{.Message.Name}}" />
+    </label>
+    <input type="submit" name="Submit" value="更新" /><br/>
+    <a href="/delete/{{.Message.Id}}">delete</a>
+  </form>
+  {{.Mess}}<br/>
+  <a href="/index">back</a>
+</html>

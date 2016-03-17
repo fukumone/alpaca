@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"time"
+	"strconv"
 	"net/http"
 	"html/template"
 
@@ -46,4 +47,12 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 		db.Create(&Message)
 		http.Redirect(w, r, "/index", 301)
 	}
+}
+
+func EditHandler(w http.ResponseWriter, r *http.Request){
+	Message := models.Message{}
+	Message.Id, _ = strconv.ParseInt("10", 10, 64)
+	db.Find(&Message)
+	tpl := template.Must(template.ParseFiles("templates/edit.html"))
+	tpl.Execute(w,FormData{Message, ""})
 }

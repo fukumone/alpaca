@@ -14,9 +14,11 @@ func main() {
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/new", NewHandler)
 	http.HandleFunc("/create", CreateHandler)
+	http.HandleFunc("/edit", EditHandler)
+	// http.HandleFunc("/update", UpdateHandler)
 
 	// Webサーバーを起動
-	if err := http.ListenAndServe(":3000", nil); err != nil {
+	if err := http.ListenAndServe(":3000", Log(http.DefaultServeMux)); err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
 }
