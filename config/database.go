@@ -29,7 +29,7 @@ func Database() gorm.DB {
 		))
 
 	if err != nil {
-		panic(err)
+		panic("failed to connect database")
 	}
 	return db
 }

@@ -12,7 +12,7 @@ type Message struct {
 	Title     string `sql:"size:255"`
 	Body      string `sql:"size:255"`
 	CreatedAt time.Time
-	UpdatedAT time.Time
+	UpdatedAt time.Time
 }
 
 func MessageValidate(message Message) error {
@@ -32,6 +32,6 @@ func NewMessage(name string, title string, body string) *Message {
 		Title:     title,
 		Body:      body,
 		CreatedAt: time.Now(),
-		UpdatedAT: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 	"net/http"
 	"html/template"
 
@@ -27,7 +28,11 @@ func NewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
-	Message := models.Message{Name: r.FormValue("Name"), Title: r.FormValue("Title"), Body: r.FormValue("Body")}
+	Message := models.Message{Name: r.FormValue("Name"),
+							Title: r.FormValue("Title"),
+							Body: r.FormValue("Body"),
+							CreatedAt: time.Now(),
+							UpdatedAt: time.Now() }
 
 	if err := models.MessageValidate(Message); err != nil {
 		var Mess string
