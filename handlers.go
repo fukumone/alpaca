@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	"time"
-	"strconv"
 	"net/http"
-	"html/template"
+	"text/template"
 
 	"github.com/wcl48/valval"
 	"github.com/t-fukui/alpaca/models"
@@ -49,10 +48,6 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func EditHandler(w http.ResponseWriter, r *http.Request){
-	Message := models.Message{}
-	Message.Id, _ = strconv.ParseInt("10", 10, 64)
-	db.Find(&Message)
-	tpl := template.Must(template.ParseFiles("templates/edit.html"))
-	tpl.Execute(w,FormData{Message, ""})
+func EditHandler() {
+
 }

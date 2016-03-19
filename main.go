@@ -11,11 +11,13 @@ import (
 var db gorm.DB
 
 func main() {
+	fs := http.FileServer(http.Dir("css"))
+	http.Handle("/css/", http.StripPrefix("/css/", fs))
+
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/new", NewHandler)
 	http.HandleFunc("/create", CreateHandler)
-	http.HandleFunc("/edit", EditHandler)
-	// http.HandleFunc("/update", UpdateHandler)
+	// http.Handle("/edit", &EditHandler{})
 
 	// Webサーバーを起動
 	if err := http.ListenAndServe(":3000", Log(http.DefaultServeMux)); err != nil {

@@ -1,12 +1,19 @@
-<html>
-  <form method="post" action="/update/{{.Message.Id}}" >
-    <label>
-      Name
-      <input type="text" name="Name" value="{{.Message.Name}}" />
-    </label>
-    <input type="submit" name="Submit" value="更新" /><br/>
-    <a href="/delete/{{.Message.Id}}">delete</a>
-  </form>
-  {{.Mess}}<br/>
-  <a href="/index">back</a>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h3>Hello</h3>
+    <!-- <form method="post" action="/update/{{.Message.Id}}" >
+      <label>
+        Name
+        <input type="text" name="Name" value="{{.Message.Name}}" />
+      </label>
+      <input type="submit" name="Submit" value="更新" /><br/>
+      <!-- <a href="/delete/{{.Message.Id}}">delete</a> -->
+    </form>
+    {{.Mess}}<br/>
+    <a href="/index">back</a> -->
+  </body>
 </html>
