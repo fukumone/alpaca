@@ -48,6 +48,7 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func EditHandler() {
-
+func EditHandler(w http.ResponseWriter, r *http.Request) {
+	tpl := template.Must(template.ParseFiles("templates/edit.html"))
+	tpl.Execute(w, r)
 }
