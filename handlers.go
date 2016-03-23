@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"time"
+	"strings"
 	"net/http"
 	"text/template"
 
@@ -16,10 +17,10 @@ type FormData struct {
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	Messages := []models.Message{}
-	db.Debug().Find(&Messages)
+	messages := []models.Message{}
+	db.Debug().Find(&messages)
 	tpl := template.Must(template.ParseFiles("templates/index.html"))
-	tpl.Execute(w, &Messages)
+	tpl.Execute(w, &messages)
 }
 
 func NewHandler(w http.ResponseWriter, r *http.Request) {
@@ -49,6 +50,9 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditHandler(w http.ResponseWriter, r *http.Request) {
+	Message := models.Message{}
+	id := strings.Split(r.URL.Path, "/")[2]
+	db.Debug().First(&Message, id)
 	tpl := template.Must(template.ParseFiles("templates/edit.html"))
-	tpl.Execute(w, r)
+	tpl.Execute(w, FormData{Message, ""})
 }

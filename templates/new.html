@@ -1,22 +1,31 @@
 <html lang="ja">
   <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
   </head>
   <form method="post" action="/create" >
-    <label>
-      Name
-      <input type="text" name="Name" value="{{.Message.Name}}"/>
-    </label>
-    <label>
-      Title
-      <input type="text" name="Title" value="{{.Message.Title}}"/>
-    </label>
-    <label>
-      Body
-      <input type="text" name="Body" value="{{.Message.Body}}"/>
-    </label>
-    <input type="submit" name="Submit" value="登録" /><br/>
-    {{.Mess}}
+    <p>{{.Mess}}</p>
+    <ul>
+      <li>
+        <label>
+          名前
+          <input type="text" name="Name" value="{{.Message.Name}}"/>
+        </label>
+      </li>
+      <li>
+        <label>
+          タイトル
+          <input type="text" name="Title" value="{{.Message.Title}}"/>
+        </label>
+      </li>
+      <li>
+        <label>
+          本文
+          <input type="text" name="Body" value="{{.Message.Body}}"/>
+        </label>
+      </li>
+      <input type="submit" name="Submit" value="登録" /><br/>
+    </ul>
   </form>
-  <a href="/index">back</a>
+  <a href="/">掲示板一覧</a>
 </html>
