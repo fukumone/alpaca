@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"time"
-	"strings"
 	"net/http"
+	"strings"
 	"text/template"
+	"time"
 
-	"github.com/wcl48/valval"
 	"github.com/t-fukui/alpaca/models"
+	"github.com/wcl48/valval"
 )
 
 type FormData struct {
 	Message models.Message
-	Mess string
+	Mess    string
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
@@ -30,10 +30,10 @@ func NewHandler(w http.ResponseWriter, r *http.Request) {
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	Message := models.Message{Name: r.FormValue("Name"),
-							Title: r.FormValue("Title"),
-							Body: r.FormValue("Body"),
-							CreatedAt: time.Now(),
-							UpdatedAt: time.Now() }
+		Title:     r.FormValue("Title"),
+		Body:      r.FormValue("Body"),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now()}
 
 	if err := models.MessageValidate(Message); err != nil {
 		var Mess string
@@ -55,4 +55,23 @@ func EditHandler(w http.ResponseWriter, r *http.Request) {
 	db.Debug().First(&Message, id)
 	tpl := template.Must(template.ParseFiles("templates/edit.html"))
 	tpl.Execute(w, FormData{Message, ""})
+}
+
+func UpdateHandler(w http.ResponseWriter, r *http.Request) {
+	Message := models.Message{}
+	id := strings.Split(r.URL.Path, "/")[2]
+	db.Debug().First(&Message, id)
+	Message.Name = r.FormValue("Name")
+	if err := models.MessageValidate(Message); err != nil {
+		var Mess string
+		errs := valval.Errors(err)
+		for _, errInfo := range errs {
+			Mess += fmt.Sprint(errInfo.Error)
+		}
+		tpl := template.Must(template.ParseFiles("templates/edit.html"))
+		tpl.Execute(w, FormData{Message, Mess})
+	} else {
+		db.Debug().Save(&Message)
+		http.Redirect(w, r, "/", 301)
+	}
 }
