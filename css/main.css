@@ -25,6 +25,12 @@ p {
   line-height: 1.5em;
 }
 
+header {
+  padding: 1em;
+  border: 3px solid #ccc;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+}
+
 footer {
   position: absolute;
   padding: 10px 0;
