@@ -1,15 +1,16 @@
 package config
 
 import (
+	"os"
+	"log"
 	"fmt"
+
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 	_ "github.com/go-sql-driver/mysql"
-	"log"
-	"os"
 )
 
-func Env_load() {
+func env_load() {
 	if os.Getenv("ALPACA_ENV") == "" {
 		os.Setenv("ALPACA_ENV", "development")
 	}
@@ -21,7 +22,7 @@ func Env_load() {
 }
 
 func Database() gorm.DB {
-	Env_load()
+	env_load()
 	db, err := gorm.Open("mysql",
 		fmt.Sprintf("%s:@/%s?charset=utf8&parseTime=True&loc=Local",
 			os.Getenv("USER_NAME"),
