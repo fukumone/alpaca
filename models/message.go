@@ -1,9 +1,9 @@
 package models
 
 import (
-	"github.com/wcl48/valval"
-	"regexp"
 	"time"
+
+	"github.com/wcl48/valval"
 )
 
 type Message struct {
@@ -18,20 +18,10 @@ type Message struct {
 func MessageValidate(message Message) error {
 	Validator := valval.Object(valval.M{
 		"Name": valval.String(
+			valval.MinLength(1),
 			valval.MaxLength(20),
-			valval.Regexp(regexp.MustCompile(`^[a-z ]+$`)),
 		),
 	})
 
 	return Validator.Validate(message)
-}
-
-func NewMessage(name string, title string, body string) *Message {
-	return &Message{
-		Name:      name,
-		Title:     title,
-		Body:      body,
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
-	}
 }
