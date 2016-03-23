@@ -1,21 +1,17 @@
 package models
 
 import (
-	// "time"
-
 	"github.com/jinzhu/gorm"
 	"github.com/wcl48/valval"
 )
 
-type Message struct {
+type Title struct {
 	gorm.Model
-	Title     Title
-	TitleId   int64
+	Messages   []Message
 	Name      string `sql:"size:255"`
-	Body      string `sql:"size:255"`
 }
 
-func MessageValidate(message Message) error {
+func TitleValidate(title Title) error {
 	Validator := valval.Object(valval.M{
 		"Name": valval.String(
 			valval.MinLength(1),
@@ -23,5 +19,5 @@ func MessageValidate(message Message) error {
 		),
 	})
 
-	return Validator.Validate(message)
+	return Validator.Validate(title)
 }
