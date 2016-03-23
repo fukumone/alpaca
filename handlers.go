@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"strings"
 	"text/template"
-	"time"
 
 	"github.com/t-fukui/alpaca/models"
 	"github.com/wcl48/valval"
@@ -32,10 +31,7 @@ func NewHandler(w http.ResponseWriter, r *http.Request) {
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	Message := models.Message{Name: r.FormValue("Name"),
-		Title:     r.FormValue("Title"),
-		Body:      r.FormValue("Body"),
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now()}
+		Body:      r.FormValue("Body")}
 
 	if err := models.MessageValidate(Message); err != nil {
 		var Mess string
@@ -64,7 +60,6 @@ func UpdateHandler(w http.ResponseWriter, r *http.Request) {
 	id := strings.Split(r.URL.Path, "/")[2]
 	db.Debug().First(&Message, id)
 	Message.Name = r.FormValue("Name")
-	Message.Title = r.FormValue("Title")
 	Message.Body = r.FormValue("Body")
 	if err := models.MessageValidate(Message); err != nil {
 		var Mess string

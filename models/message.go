@@ -1,8 +1,6 @@
 package models
 
 import (
-	// "time"
-
 	"github.com/jinzhu/gorm"
 	"github.com/wcl48/valval"
 )
