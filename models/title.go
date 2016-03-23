@@ -7,7 +7,7 @@ import (
 
 type Title struct {
 	gorm.Model
-	Messages   []Message
+	Messages  []Message
 	Name      string `sql:"size:255"`
 }
 
