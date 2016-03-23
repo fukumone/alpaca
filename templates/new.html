@@ -1,10 +1,4 @@
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>掲示板です</title>
-  </head>
+{{define "content"}}
   <form method="post" action="create" >
     <p>{{.Mess}}</p>
     <ul>
@@ -24,4 +18,4 @@
     </ul>
   </form>
   <a href="/">掲示板一覧</a>
-</html>
+{{end}}

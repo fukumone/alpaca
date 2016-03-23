@@ -1,35 +1,27 @@
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>掲示板です</title>
-  </head>
-  <body>
-    <form method="post" action="/update/{{.Message.Id}}" >
-      <p>{{.Mess}}</p>
-      <ul>
-        <li>
-          <label>
-            名前
-            <input type="text" name="Name" value="{{.Message.Name}}"/>
-          </label>
-        </li>
-        <li>
-          <label>
-            タイトル
-            <input type="text" name="Title" value="{{.Message.Title}}"/>
-          </label>
-        </li>
-        <li>
-          <label>
-            本文
-            <input type="text" name="Body" value="{{.Message.Body}}"/>
-          </label>
-        </li>
-        <input type="submit" name="Submit" value="更新" /><br/>
-      </ul>
-    </form>
-    <a href="/">掲示板一覧</a>
-  </body>
-</html>
+{{define "content"}}
+  <form method="post" action="/update/{{.Message.Id}}" >
+    <p>{{.Mess}}</p>
+    <ul>
+      <li>
+        <label>
+          名前
+          <input type="text" name="Name" value="{{.Message.Name}}"/>
+        </label>
+      </li>
+      <li>
+        <label>
+          タイトル
+          <input type="text" name="Title" value="{{.Message.Title}}"/>
+        </label>
+      </li>
+      <li>
+        <label>
+          本文
+          <input type="text" name="Body" value="{{.Message.Body}}"/>
+        </label>
+      </li>
+      <input type="submit" name="Submit" value="更新" /><br/>
+    </ul>
+  </form>
+  <a href="/">掲示板一覧</a>
+{{end}}

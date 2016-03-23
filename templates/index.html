@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/main.css">
-  <title>掲示板です</title>
-</head>
-<body>
-  <h1>掲示板です</h1>
-  <p>名は持っていないです</p>
+{{define "content"}}
   <a href="/new">メッセージ書き込み</a>
-
   {{range .}}
   <ul>
     <li><a href="/edit/{{.Id}}">{{.Name}}</a><br/></li>
@@ -18,5 +7,4 @@
     <li>{{.Body}}</li>
   </ul>
   {{end}}
-</body>
-</html>
+{{end}}
