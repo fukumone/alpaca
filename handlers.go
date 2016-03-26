@@ -58,7 +58,8 @@ func EditHandler(w http.ResponseWriter, r *http.Request) {
 func UpdateHandler(w http.ResponseWriter, r *http.Request) {
 	Message := models.Message{}
 	id := strings.Split(r.URL.Path, "/")[2]
-	db.Debug().First(&Message, id)
+	fmt.Println("here")
+	fmt.Println(db.Debug().First(&Message, id))
 	Message.Name = r.FormValue("Name")
 	Message.Body = r.FormValue("Body")
 	if err := models.MessageValidate(Message); err != nil {
