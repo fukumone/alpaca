@@ -1,0 +1,9 @@
+{{define "content"}}
+  <a href="/title/{{.Title.ID}}/message/new">メッセージ書き込み</a>
+  {{range .Messages}}
+    <ul>
+      <li><a href="/title/{{.Title.ID}}/message/edit/{{.ID}}">{{.Name}}</a><br/></li>
+      <li>{{.Body}}</li>
+    </ul>
+  {{end}}
+{{end}}

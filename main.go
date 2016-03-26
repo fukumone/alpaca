@@ -22,6 +22,11 @@ func main() {
 	mux.Get("/edit/:id", http.HandlerFunc(EditHandler))
 	mux.Post("/update/:id", http.HandlerFunc(UpdateHandler))
 
+	// Message
+	mux.Get("/title/:id/messages", http.HandlerFunc(MessagesIndexHandler))
+	mux.Get("/title/:id/message/new", http.HandlerFunc(MessageNewHandler))
+	mux.Post("/title/:id/message/create", http.HandlerFunc(MessageCreateHandler))
+
 	http.Handle("/", mux)
 	// Webサーバーを起動
 	if err := http.ListenAndServe(":3000", nil); err != nil {
