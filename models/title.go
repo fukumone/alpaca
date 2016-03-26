@@ -1,14 +1,16 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
+	"time"
 	"github.com/wcl48/valval"
 )
 
 type Title struct {
-	gorm.Model
+	ID   int
 	Messages  []Message
 	Name      string `sql:"size:255"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func TitleValidate(title Title) error {

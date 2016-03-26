@@ -18,10 +18,10 @@ type FormData struct {
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	messages := []models.Message{}
-	db.Debug().Find(&messages)
+	Messages := []models.Message{}
+	db.Debug().Find(&Messages)
 	tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/index.html"))
-	tpl.Execute(w, &messages)
+	tpl.Execute(w, &Messages)
 }
 
 func NewHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +31,7 @@ func NewHandler(w http.ResponseWriter, r *http.Request) {
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	Message := models.Message{Name: r.FormValue("Name"),
-		Body:      r.FormValue("Body")}
+		Body: r.FormValue("Body")}
 
 	if err := models.MessageValidate(Message); err != nil {
 		var Mess string

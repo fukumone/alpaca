@@ -1,9 +1,9 @@
 {{define "content"}}
   <a href="/new">メッセージ書き込み</a>
   {{range .}}
-  <ul>
-    <li><a href="/edit/{{.Id}}">{{.Name}}</a><br/></li>
-    <li>{{.Body}}</li>
-  </ul>
+    <ul>
+      <li><a href="/edit/{{.ID}}">{{.Name}}</a><br/></li>
+      <li>{{.Body}}</li>
+    </ul>
   {{end}}
 {{end}}

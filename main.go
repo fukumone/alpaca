@@ -24,8 +24,8 @@ func main() {
 
 	http.Handle("/", mux)
 	// Webサーバーを起動
-	if err := http.ListenAndServe(":3000", Log(http.DefaultServeMux)); err != nil {
-		log.Fatal("ListenAndServe:", err)
+	if err := http.ListenAndServe(":3000", nil); err != nil {
+		log.Fatal("ListenAndServe:", Log(http.DefaultServeMux))
 	}
 }
 
