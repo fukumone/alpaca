@@ -18,22 +18,23 @@ type TitleFormData struct {
 	Mess    string
 }
 
-//////////////////////////
-///// Titleアクション /////
-//////////////////////////
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
+///// Root /////
+func TopHandler(w http.ResponseWriter, r *http.Request) {
 	Titles := []models.Title{}
 	db.Debug().Find(&Titles)
 	tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/index.html"))
 	tpl.Execute(w, &Titles)
 }
 
-func NewHandler(w http.ResponseWriter, r *http.Request) {
+//////////////////////////
+///// Titleアクション /////
+//////////////////////////
+func TitleNewHandler(w http.ResponseWriter, r *http.Request) {
 	tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/new.html"))
 	tpl.Execute(w, TitleFormData{models.Title{}, ""})
 }
 
-func CreateHandler(w http.ResponseWriter, r *http.Request) {
+func TitleCreateHandler(w http.ResponseWriter, r *http.Request) {
 	Title := models.Title{Name: r.FormValue("Name")}
 
 	if err := models.TitleValidate(Title); err != nil {
@@ -50,7 +51,7 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func EditHandler(w http.ResponseWriter, r *http.Request) {
+func TitleEditHandler(w http.ResponseWriter, r *http.Request) {
 	Title := models.Title{}
 	id := strings.Split(r.URL.Path, "/")[2]
 	db.Debug().First(&Title, id)
@@ -58,7 +59,7 @@ func EditHandler(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, TitleFormData{Title, ""})
 }
 
-func UpdateHandler(w http.ResponseWriter, r *http.Request) {
+func TitleUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	Title := models.Title{}
 	id := strings.Split(r.URL.Path, "/")[2]
 	db.Debug().First(&Title, id)

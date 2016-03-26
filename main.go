@@ -16,11 +16,11 @@ func main() {
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 
 	mux := pat.New()
-	mux.Get("/", http.HandlerFunc(IndexHandler))
-	mux.Get("/title/new", http.HandlerFunc(NewHandler))
-	mux.Post("/title/create", http.HandlerFunc(CreateHandler))
-	mux.Get("/title/edit/:id", http.HandlerFunc(EditHandler))
-	mux.Post("/title/update/:id", http.HandlerFunc(UpdateHandler))
+	mux.Get("/", http.HandlerFunc(TopHandler))
+	mux.Get("/title/new", http.HandlerFunc(TitleNewHandler))
+	mux.Post("/title/create", http.HandlerFunc(TitleCreateHandler))
+	mux.Get("/title/edit/:id", http.HandlerFunc(TitleEditHandler))
+	mux.Post("/title/update/:id", http.HandlerFunc(TitleUpdateHandler))
 
 	// Message
 	mux.Get("/title/:id/messages", http.HandlerFunc(MessagesIndexHandler))
