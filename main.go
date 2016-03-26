@@ -16,7 +16,11 @@ func main() {
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 
 	mux := pat.New()
+
+	// Root
 	mux.Get("/", http.HandlerFunc(TopHandler))
+
+	// Title
 	mux.Get("/title/new", http.HandlerFunc(TitleNewHandler))
 	mux.Post("/title/create", http.HandlerFunc(TitleCreateHandler))
 	mux.Get("/title/edit/:id", http.HandlerFunc(TitleEditHandler))
