@@ -17,10 +17,10 @@ func main() {
 
 	mux := pat.New()
 	mux.Get("/", http.HandlerFunc(IndexHandler))
-	mux.Get("/new", http.HandlerFunc(NewHandler))
-	mux.Post("/create", http.HandlerFunc(CreateHandler))
-	mux.Get("/edit/:id", http.HandlerFunc(EditHandler))
-	mux.Post("/update/:id", http.HandlerFunc(UpdateHandler))
+	mux.Get("/title/new", http.HandlerFunc(NewHandler))
+	mux.Post("/title/create", http.HandlerFunc(CreateHandler))
+	mux.Get("/title/edit/:id", http.HandlerFunc(EditHandler))
+	mux.Post("/title/update/:id", http.HandlerFunc(UpdateHandler))
 
 	// Message
 	mux.Get("/title/:id/messages", http.HandlerFunc(MessagesIndexHandler))
