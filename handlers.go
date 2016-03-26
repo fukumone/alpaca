@@ -18,9 +18,9 @@ type TitleFormData struct {
 	Mess    string
 }
 
-
+//////////////////////////
 ///// Titleアクション /////
-
+//////////////////////////
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	Titles := []models.Title{}
 	db.Debug().Find(&Titles)
@@ -77,9 +77,9 @@ func UpdateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
+////////////////////////////
 ///// Messageアクション /////
-
+////////////////////////////
 type MessageFormData struct {
 	Message models.Message
 	Title   models.Title
@@ -87,7 +87,7 @@ type MessageFormData struct {
 }
 
 type MessageIndexData struct {
-	Message []models.Message
+	Messages []models.Message
 	Title   models.Title
 }
 
@@ -112,7 +112,10 @@ func MessageNewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func MessageCreateHandler(w http.ResponseWriter, r *http.Request) {
+	Title := models.Title{}
 	id := strings.Split(r.URL.Path, "/")[2]
+	db.Debug().First(&Title, id)
+
 	TitleId, _ := strconv.Atoi(id)
 	Message := models.Message{TitleId: int64(TitleId),
 		Name: r.FormValue("Name"),
@@ -125,10 +128,50 @@ func MessageCreateHandler(w http.ResponseWriter, r *http.Request) {
 			Mess += fmt.Sprint(errInfo.Error)
 		}
 		tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/messages/new.html"))
-		tpl.Execute(w, MessageFormData{Message, models.Title{}, Mess})
+		tpl.Execute(w, MessageFormData{Message, Title, Mess})
 	} else {
 		db.Debug().Create(&Message)
 		path := fmt.Sprintf("/title/%s/messages", id)
+		http.Redirect(w, r, path, 301)
+	}
+}
+
+func MessageEditHandler(w http.ResponseWriter, r *http.Request) {
+	Title := models.Title{}
+	TitleID := strings.Split(r.URL.Path, "/")[2]
+	db.Debug().First(&Title, TitleID)
+
+	Message := models.Message{}
+	MessageID := strings.Split(r.URL.Path, "/")[5]
+	db.Debug().First(&Message, MessageID)
+
+	tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/messages/edit.html"))
+	tpl.Execute(w, MessageFormData{Message, Title, ""})
+}
+
+func MessageUpdateHandler(w http.ResponseWriter, r *http.Request) {
+	Title := models.Title{}
+	TitleID := strings.Split(r.URL.Path, "/")[2]
+	db.Debug().First(&Title, TitleID)
+
+	Message := models.Message{}
+	MessageID := strings.Split(r.URL.Path, "/")[5]
+	db.Debug().First(&Message, MessageID)
+
+	Message.Name = r.FormValue("Name")
+	Message.Body = r.FormValue("Body")
+
+	if err := models.MessageValidate(Message); err != nil {
+		var Mess string
+		errs := valval.Errors(err)
+		for _, errInfo := range errs {
+			Mess += fmt.Sprint(errInfo.Error)
+		}
+		tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/messages/edit.html"))
+		tpl.Execute(w, MessageFormData{Message, Title, Mess})
+	} else {
+		db.Debug().Save(&Message)
+		path := fmt.Sprintf("/title/%s/messages", TitleID)
 		http.Redirect(w, r, path, 301)
 	}
 }

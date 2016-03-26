@@ -26,6 +26,8 @@ func main() {
 	mux.Get("/title/:id/messages", http.HandlerFunc(MessagesIndexHandler))
 	mux.Get("/title/:id/message/new", http.HandlerFunc(MessageNewHandler))
 	mux.Post("/title/:id/message/create", http.HandlerFunc(MessageCreateHandler))
+	mux.Get("/title/:id/message/edit/:message_id", http.HandlerFunc(MessageEditHandler))
+	mux.Post("/title/:id/message/update/:message_id", http.HandlerFunc(MessageUpdateHandler))
 
 	http.Handle("/", mux)
 	// Webサーバーを起動
