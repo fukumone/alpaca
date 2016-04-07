@@ -1,11 +1,21 @@
 {{define "content"}}
-  <a href="/title/new">掲示板作成</a>
-  {{range .}}
-    <table>
-      <tr>
-        <td><a href="/title/{{.ID}}/messages">{{.Name}}</a></td>
-        <td><a href="/title/edit/{{.ID}}">編集</a></td>
-      </tr>
-    </table>
-  {{end}}
+  <div class="row">
+      <div class="col-sm-5">
+        <table class="table table-hover">
+          <tr>
+            <th>タイトル</th>
+            <th>アクション</th>
+          </tr>
+          {{range .}}
+          <tr>
+            <td><a href="/title/{{.ID}}/messages">{{.Name}}</a></td>
+            <td><a href="/title/edit/{{.ID}}">編集</a></td>
+          </tr>
+          {{end}}
+        </table>
+      </div>
+      <div class="col-sm-7">
+        <a href="/title/new" class="btn btn-primary create">掲示板作成</a>
+      </div>
+  </div>
 {{end}}

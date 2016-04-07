@@ -25,6 +25,14 @@ p {
   line-height: 1.5em;
 }
 
+.create {
+  margin: 10px;
+}
+
+.row {
+  margin: 10px;
+}
+
 header {
   padding: 1em;
   border: 3px solid #ccc;
