@@ -1,0 +1,28 @@
+{
+  "name": "alpaca",
+  "version": "1.0.0",
+  "description": "alpaca",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-espower": "^1.0.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "browserify-incremental": "^3.0.1",
+    "css-loader": "^0.23.0",
+    "history": "^1.13.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9"
+  },
+  "scripts": {
+    "postinstall": "webdriver-manager update",
+    "test:local": "$(npm bin)/protractor test/e2e/conf.js --target=localhost"
+  }
+}

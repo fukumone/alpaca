@@ -12,8 +12,10 @@ import (
 var db gorm.DB
 
 func main() {
-	fs := http.FileServer(http.Dir("css"))
-	http.Handle("/css/", http.StripPrefix("/css/", fs))
+	css := http.FileServer(http.Dir("assets/css"))
+	http.Handle("/assets/css/", http.StripPrefix("/assets/css/", css))
+	js := http.FileServer(http.Dir("assets/js"))
+	http.Handle("/assets/js/", http.StripPrefix("/assets/js/", js))
 
 	mux := pat.New()
 	mux.Get("/", http.HandlerFunc(IndexHandler))
