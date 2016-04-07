@@ -53,7 +53,7 @@ func TitleCreateHandler(w http.ResponseWriter, r *http.Request) {
 
 func TitleEditHandler(w http.ResponseWriter, r *http.Request) {
 	Title := models.Title{}
-	id := strings.Split(r.URL.Path, "/")[2]
+	id := strings.Split(r.URL.Path, "/")[3]
 	db.Debug().First(&Title, id)
 	tpl = template.Must(template.ParseFiles("templates/layout.html", "templates/edit.html"))
 	tpl.Execute(w, TitleFormData{Title, ""})
