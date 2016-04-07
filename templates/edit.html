@@ -1,21 +1,15 @@
 {{define "content"}}
-  <form method="post" action="/update/{{.Message.Id}}" >
+  <form method="post" action="/title/update/{{.Title.ID}}" >
     <p>{{.Mess}}</p>
-    <ul>
-      <li>
-        <label>
-          名前
-          <input type="text" name="Name" value="{{.Message.Name}}"/>
-        </label>
-      </li>
-      <li>
-        <label>
-          本文
-          <input type="text" name="Body" value="{{.Message.Body}}"/>
-        </label>
-      </li>
-      <input type="submit" name="Submit" value="更新" /><br/>
-    </ul>
+    <table>
+      <tr>
+        <th>名前</th>
+        <td><input type="text" name="Name" value="{{.Title.Name}}"/></td>
+      </tr>
+      <tr>
+        <td><input type="submit" name="Submit" value="更新" /></td>
+      </tr>
+    </table>
   </form>
   <a href="/">掲示板一覧</a>
 {{end}}

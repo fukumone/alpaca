@@ -1,12 +1,15 @@
 version: '2'
 
 services:
-  web:
+  app:
     build: .
     ports:
       - "3000:3000"
     links:
       - db
+    volumes:
+      - ".:/app"
+    command: go build -o ./alpaca && ./alpaca
 
   db:
     image: mysql

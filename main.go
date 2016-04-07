@@ -18,16 +18,27 @@ func main() {
 	http.Handle("/assets/js/", http.StripPrefix("/assets/js/", js))
 
 	mux := pat.New()
-	mux.Get("/", http.HandlerFunc(IndexHandler))
-	mux.Get("/new", http.HandlerFunc(NewHandler))
-	mux.Post("/create", http.HandlerFunc(CreateHandler))
-	mux.Get("/edit/:id", http.HandlerFunc(EditHandler))
-	mux.Patch("/update/:id", http.HandlerFunc(UpdateHandler))
+
+	// Root
+	mux.Get("/", http.HandlerFunc(TopHandler))
+
+	// Title
+	mux.Get("/title/new", http.HandlerFunc(TitleNewHandler))
+	mux.Post("/title/create", http.HandlerFunc(TitleCreateHandler))
+	mux.Get("/title/edit/:id", http.HandlerFunc(TitleEditHandler))
+	mux.Post("/title/update/:id", http.HandlerFunc(TitleUpdateHandler))
+
+	// Message
+	mux.Get("/title/:id/messages", http.HandlerFunc(MessagesIndexHandler))
+	mux.Get("/title/:id/message/new", http.HandlerFunc(MessageNewHandler))
+	mux.Post("/title/:id/message/create", http.HandlerFunc(MessageCreateHandler))
+	mux.Get("/title/:id/message/edit/:message_id", http.HandlerFunc(MessageEditHandler))
+	mux.Post("/title/:id/message/update/:message_id", http.HandlerFunc(MessageUpdateHandler))
 
 	http.Handle("/", mux)
 	// Webサーバーを起動
-	if err := http.ListenAndServe(":3000", Log(http.DefaultServeMux)); err != nil {
-		log.Fatal("ListenAndServe:", err)
+	if err := http.ListenAndServe(":3000", nil); err != nil {
+		log.Fatal("ListenAndServe:", Log(http.DefaultServeMux))
 	}
 }
 

@@ -1,9 +1,11 @@
 {{define "content"}}
-  <a href="/new">メッセージ書き込み</a>
+  <a href="/title/new">掲示板作成</a>
   {{range .}}
-  <ul>
-    <li><a href="/edit/{{.Id}}">{{.Name}}</a><br/></li>
-    <li>{{.Body}}</li>
-  </ul>
+    <table>
+      <tr>
+        <td><a href="/title/{{.ID}}/messages">{{.Name}}</a></td>
+        <td><a href="/title/edit/{{.ID}}">編集</a></td>
+      </tr>
+    </table>
   {{end}}
 {{end}}
