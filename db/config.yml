@@ -1,0 +1,10 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: alpaca_development
+  pool: 5
+  username: root
+  timeout: 5000
+  host: 127.0.0.1
+  password: root
+  port: 3306
