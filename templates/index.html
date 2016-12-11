@@ -1,5 +1,6 @@
 {{define "content"}}
-  <a href="/title/new">掲示板作成</a>
+  <div class="keijiban">
+  <a href="/title/new" class="title_name">掲示板作成</a>
   {{range .}}
     <table>
       <tr>
@@ -8,4 +9,5 @@
       </tr>
     </table>
   {{end}}
+  </div>
 {{end}}

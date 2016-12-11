@@ -9,7 +9,7 @@ import (
 	"github.com/fukumone/alpaca/config"
 )
 
-var db gorm.DB
+var db *gorm.DB
 
 func main() {
 	fs := http.FileServer(http.Dir("css"))

@@ -37,3 +37,17 @@ footer {
   bottom: 0px;
   margin: auto;
 }
+
+td {
+  font-size: 15px;
+  width: 50px;
+  padding: 0 0 0 5px;
+}
+
+.title_name {
+  font-size: 20px;
+}
+
+.keijiban {
+  margin: 10px;
+}

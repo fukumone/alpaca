@@ -21,13 +21,14 @@ func env_load() {
 	}
 }
 
-func Database() gorm.DB {
+func Database() *gorm.DB {
 	env_load()
-	db, err := gorm.Open("mysql",
-		fmt.Sprintf("%s:@/%s?charset=utf8&parseTime=True&loc=Local",
-			os.Getenv("USER_NAME"),
-			os.Getenv("DATABASE_NAME"),
-		))
+
+	db, err := gorm.Open("mysql", fmt.Sprintf("%s:%s@/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		os.Getenv("DATABASE_USER_NAME"),
+		os.Getenv("DATABASE_USER_PASSWORD"),
+		os.Getenv("DATABASE_NAME"),
+	))
 
 	if err != nil {
 		panic("failed to connect database")
