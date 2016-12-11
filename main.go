@@ -6,7 +6,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"github.com/bmizerany/pat"
-	"github.com/t-fukui/alpaca/config"
+	"github.com/fukumone/alpaca/config"
 )
 
 var db gorm.DB

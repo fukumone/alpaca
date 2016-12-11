@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"text/template"
 
-	"github.com/t-fukui/alpaca/models"
+	"github.com/fukumone/alpaca/models"
 	"github.com/wcl48/valval"
 )
 

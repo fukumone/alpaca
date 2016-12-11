@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/t-fukui/alpaca/config"
-	"github.com/t-fukui/alpaca/models"
+	"github.com/fukumone/alpaca/config"
+	"github.com/fukumone/alpaca/models"
 )
 
 func main(){
